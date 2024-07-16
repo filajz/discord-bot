@@ -60,7 +60,7 @@ class ReminderView(discord.ui.View):
 
         task = client.loop.create_task(reminder_task())
         client.reminders[self.user_id] = task
-        await interaction.response.send_message("Časovač připomínky právě začal.", ephemeral=True)
+        await interaction.response.send_message("Připomínka bude opět pokračovat.", ephemeral=True)
 
 @client.tree.command(name="remindme", description="Nastaví připomínku dle zvoleného intervalu s možností nastavit vlastní zprávu")
 @app_commands.describe(
@@ -68,7 +68,7 @@ class ReminderView(discord.ui.View):
     unit="Jednotka času (seconds, minutes, nebo hours)",
     message="Vlastní zpráva (nepovinné)"
 )
-async def remindme(interaction: discord.Interaction, value: int, unit: str, message: str = "Toto je tvoje připomínka!"):
+async def remindme(interaction: discord.Interaction, value: int, unit: str, message: str = "Tvoje připomínka!"):
     user_id = interaction.user.id
 
     # Convert unit to seconds
